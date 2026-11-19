@@ -12,16 +12,12 @@
   <meta property="og:locale" content="pt_BR">
   <meta name="robots" content="max-image-preview:large, index, follow">
 
-  <!-- Preconnect & Fonts -->
+  <!-- Preconnect & Fonts (Otimizado: max 2 preconnects e carregamento síncrono para zero CLS) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="https://connect.facebook.net">
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700;800&display=swap">
-  </noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700;800&display=swap">
 
-  <!-- Meta Pixel Code -->
+  <!-- Meta Pixel Code (Otimizado para Alta Performance / Zero TBT) -->
   <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -29,8 +25,17 @@
   if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
   n.queue=[];t=b.createElement(e);t.async=!0;
   t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
+  function initPixel(){
+    if(!t._inserted){t._inserted=true;s.parentNode.insertBefore(t,s);}
+  }
+  if(document.readyState==='complete'){initPixel();}
+  else{
+    window.addEventListener('load',function(){
+      if('requestIdleCallback' in window){requestIdleCallback(initPixel,{timeout:2000});}
+      else{setTimeout(initPixel,1000);}
+    });
+  }
+  }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '4651945478371062');
   fbq('track', 'PageView');
   </script>
@@ -354,6 +359,7 @@
     .hero-img-rounded {
       width: 100%;
       height: auto;
+      aspect-ratio: 960 / 541;
       border-radius: 24px;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
       display: block;
@@ -472,6 +478,7 @@
 
     .marquee-page-card {
       width: 320px;
+      aspect-ratio: 480 / 679;
       flex-shrink: 0;
       border-radius: 18px;
       overflow: hidden;
@@ -488,7 +495,9 @@
     }
     .marquee-page-card img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      aspect-ratio: 480 / 679;
+      object-fit: cover;
       display: block;
     }
 
@@ -1263,7 +1272,9 @@
         display: flex !important;
         justify-content: center;
         max-width: 440px;
+        width: 100%;
         margin: 14px auto 18px;
+        aspect-ratio: 960 / 541;
       }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .bento-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1290,9 +1301,14 @@
       }
       .hero-image-mobile {
         max-width: 320px;
+        width: 100%;
         margin: 10px auto 14px;
+        aspect-ratio: 960 / 541;
       }
       .hero-image-mobile img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 960 / 541;
         border-radius: 18px;
         box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
       }
@@ -1894,6 +1910,9 @@
 
             <ul class="plan-features">
               <li><strong>Guia Completo 4 Semanas de Pilates para Gestantes</strong></li>
+              <li>Fichas Ilustradas Passo a Passo com Setas de Execução</li>
+              <li>Versão Otimizada para Celular, Tablet e Impressão</li>
+              <li>Acesso Imediato no E-mail e WhatsApp</li>
               <li><strong>Bônus 1:</strong> 10 Rotinas Expressas de Pilates (5 a 10 min)</li>
               <li><strong>Bônus 2:</strong> 12 Mapas Visuais de Alongamentos Suaves</li>
               <li><strong>Bônus 3:</strong> Guia Ilustrado Parceiro Presente</li>
